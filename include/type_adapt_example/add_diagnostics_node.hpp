@@ -55,12 +55,14 @@ void custom_call(const std::shared_ptr<CustomAddDiagnostics::Request> & req,
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Here's the Client Callback: %s", res->message.c_str());
 }
 
+/*
 void ros_call(const std::shared_ptr<diagnostic_msgs::srv::AddDiagnostics::Request> & req, std::shared_ptr<diagnostic_msgs::srv::AddDiagnostics::Response> res)
 {
   res->success = true;
   res->message = "There is Data";
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Here's the Client Callback: %s", res->message.c_str());
 }
+*/
 
 };
 

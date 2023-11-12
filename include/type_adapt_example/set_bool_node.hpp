@@ -55,12 +55,14 @@ void custom_call(const std::shared_ptr<bool> & req, std::shared_ptr<CustomBool::
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Here's the Client Callback: %s", res->message.c_str());
 }
 
+/*
 void ros_call(const std::shared_ptr<std_srvs::srv::SetBool::Request> & req, std::shared_ptr<std_srvs::srv::SetBool::Response> res)
 {
   res->success = req.get();
   res->message = "There is Data";
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Here's the Client Callback: %s", res->message.c_str());
 }
+*/
 
 };
 

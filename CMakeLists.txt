@@ -10,31 +10,40 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(std_srvs REQUIRED)
-find_package(diagnostic_msgs REQUIRED)
-find_package(lifecycle_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 
 set(NODE_HEADERS
-  include/type_adapt_example/set_bool_node.hpp
-  include/type_adapt_example/add_diagnostics_node.hpp
-  include/type_adapt_example/empty_node.hpp
-  include/type_adapt_example/trigger_node.hpp
-  include/type_adapt_example/change_state_node.hpp
-  include/type_adapt_example/get_state_node.hpp
+  include/type_adapt_example/string_node.hpp
+  include/type_adapt_example/typed_string_node.hpp
+  include/type_adapt_example/string_type_adapter.hpp
 )
 
-add_executable(server_node_process src/server_node_process.cpp "${NODE_HEADERS}")
-ament_target_dependencies(server_node_process rclcpp std_srvs diagnostic_msgs lifecycle_msgs)
-target_include_directories(server_node_process PUBLIC include)
+add_executable(pub_node_process src/pub_node_process.cpp "${NODE_HEADERS}")
+ament_target_dependencies(pub_node_process rclcpp std_msgs )
+target_include_directories(pub_node_process PUBLIC include)
 
-add_executable(client_node_process src/client_node_process.cpp "${NODE_HEADERS}")
-ament_target_dependencies(client_node_process rclcpp std_srvs diagnostic_msgs lifecycle_msgs)
-target_include_directories(client_node_process PUBLIC include)
+add_executable(sub_node_process src/sub_node_process.cpp "${NODE_HEADERS}")
+ament_target_dependencies(sub_node_process rclcpp std_msgs )
+target_include_directories(sub_node_process PUBLIC include)
+
+add_executable(pub_type_adapt_node_process src/pub_type_adapt_node_process.cpp "${NODE_HEADERS}")
+ament_target_dependencies(pub_type_adapt_node_process rclcpp std_msgs )
+target_include_directories(pub_type_adapt_node_process PUBLIC include)
+
+add_executable(sub_type_adapt_node_process src/sub_type_adapt_node_process.cpp "${NODE_HEADERS}")
+ament_target_dependencies(sub_type_adapt_node_process rclcpp std_msgs )
+target_include_directories(sub_type_adapt_node_process PUBLIC include)
 
 install(TARGETS
-server_node_process
-client_node_process
+pub_node_process
+sub_node_process
+pub_type_adapt_node_process
+sub_type_adapt_node_process
 DESTINATION lib/${PROJECT_NAME})
+
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME})
 
 ament_package()

@@ -1,4 +1,3 @@
-# Copyright 2022 Open Source Robotics Foundation, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,7 +20,7 @@ import launch_ros.actions
 def generate_launch_description():
     return LaunchDescription([
         launch_ros.actions.Node(
-            package='type_adapt_example', executable='image_sub_type_adapt', output='both'),
+            package='type_adapt_example', executable='sub_type_adapt_node_process', output='both'),
         launch_ros.actions.Node(
-            package='type_adapt_example', executable='image_pub_type_adapt', output='both'),
+            package='type_adapt_example', executable='pub_type_adapt_node_process', output='both'),
     ])
